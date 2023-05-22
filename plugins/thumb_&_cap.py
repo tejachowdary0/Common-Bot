@@ -4,10 +4,10 @@ from helper.database import db
 @Client.on_message(filters.private & filters.command('set_caption'))
 async def add_caption(client, message):
     if len(message.command) == 1:
-       return await message.reply_text("**__Gɪᴠᴇ Tʜᴇ Cᴀᴩᴛɪᴏɴ__\n\nExᴀᴍᴩʟᴇ:- `/set_caption {filename}\n\n💾 Sɪᴢᴇ: {filesize}\n\n⏰ Dᴜʀᴀᴛɪᴏɴ: {duration}`**")
+       return await message.reply_text("**__Give The Caption__\nFile Caption Keys\n1) `{filename}` :- Name of The File.\n2) `{filesize}` :- Size of The File.\n3) `{duration}` :- Duration of The File.\n\nExample :- `/set_caption File Name :- {filename}\n\n💾 File Size :- {filesize}\n\n⏰ Duration :- {duration}`**")
     caption = message.text.split(" ", 1)[1]
     await db.set_caption(message.from_user.id, caption=caption)
-    await message.reply_text("__**✅ Cᴀᴩᴛɪᴏɴ Sᴀᴠᴇᴅ**__")
+    await message.reply_text("__**✅ Caption Saved**__")
    
 @Client.on_message(filters.private & filters.command('del_caption'))
 async def delete_caption(client, message):
