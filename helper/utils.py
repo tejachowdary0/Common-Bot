@@ -31,8 +31,8 @@ async def progress_for_pyrogram(current, total, ud_type, message, start):
         )
         try:
             await message.edit(
-                text=f"{ud_type}\n\n{tmp}",               
-                reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("✖️ 𝙲𝙰𝙽𝙲𝙴𝙻 ✖️", callback_data="close")]])                                               
+                text=f"**{ud_type}\n\n{tmp}**",               
+                reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("🚫 Close", callback_data="close")]])                                               
             )
         except:
             pass
@@ -76,7 +76,7 @@ async def send_log(b, u):
         time = curr.strftime('%I:%M:%S %p')
         await b.send_message(
             Config.LOG_CHANNEL,
-            f"**--Nᴇᴡ Uꜱᴇʀ Sᴛᴀʀᴛᴇᴅ Tʜᴇ Bᴏᴛ--**\n\nUꜱᴇʀ: {u.mention}\nIᴅ: `{u.id}`\nUɴ: @{u.username}\n\nDᴀᴛᴇ: {date}\nTɪᴍᴇ: {time}\n\nBy: {b.mention}"
+            f"**#New_User\n\n᚛› Name :- {u.mention}\n᚛› ID :- `{u.id}`\n᚛› From Bot :- [Rename Star Bots](https://t.me/Rename_Star_Bot)\n\n᚛› Date :- {date}\n᚛› Time :- {time}\n\n᚛› By :- {b.mention}**"
         )
         
 
