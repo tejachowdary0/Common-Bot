@@ -31,7 +31,7 @@ import os, sys, time, asyncio, logging, datetime
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
  
-@Client.on_message(filters.command(["stats", "status"]) & filters.user(Config.ADMIN))
+@Client.on_message(filters.command("stats") & filters.user(Config.ADMIN))
 async def get_stats(bot, message):
     total_users = await db.total_users_count()
     uptime = time.strftime("%Hh%Mm%Ss", time.gmtime(time.time() - bot.uptime))    
@@ -70,9 +70,9 @@ async def broadcast_handler(bot: Client, m: Message):
            await db.delete_user(user['_id'])
         done += 1
         if not done % 20:
-           await sts_msg.edit(f"Bʀᴏᴀᴅᴄᴀꜱᴛ Iɴ Pʀᴏɢʀᴇꜱꜱ: \nTᴏᴛᴀʟ Uꜱᴇʀꜱ {total_users} \nCᴏᴍᴩʟᴇᴛᴇᴅ: {done} / {total_users}\nSᴜᴄᴄᴇꜱꜱ: {success}\nFᴀɪʟᴇᴅ: {failed}")
+           await sts_msg.edit(f"**Broadcast 💌 in Progress :-\nTotal Users 📊 :- {total_users}\nCompleted :- {done} / {total_users}\nSuccess :- {success}\nFailed :- {failed}**")
     completed_in = datetime.timedelta(seconds=int(time.time() - start_time))
-    await sts_msg.edit(f"Bʀᴏᴀᴅᴄᴀꜱᴛ Cᴏᴍᴩʟᴇᴛᴇᴅ: \nCᴏᴍᴩʟᴇᴛᴇᴅ Iɴ `{completed_in}`.\n\nTᴏᴛᴀʟ Uꜱᴇʀꜱ {total_users}\nCᴏᴍᴩʟᴇᴛᴇᴅ: {done} / {total_users}\nSᴜᴄᴄᴇꜱꜱ: {success}\nFᴀɪʟᴇᴅ: {failed}")
+    await sts_msg.edit(f"**Broadcast Completed...\nCompleted in :- `{completed_in}`.\n\nTotal Users 📊 :- {total_users}\nCompleted :- {done} / {total_users}\nSuccess :- {success}\nFailed :- {failed}**")
            
 async def send_msg(user_id, message):
     try:
@@ -82,15 +82,15 @@ async def send_msg(user_id, message):
         await asyncio.sleep(e.value)
         return send_msg(user_id, message)
     except InputUserDeactivated:
-        logger.info(f"{user_id} : Dᴇᴀᴄᴛɪᴠᴀᴛᴇᴅ")
+        logger.info(f"{user_id} :- Deactivated")
         return 400
     except UserIsBlocked:
-        logger.info(f"{user_id} : Bʟᴏᴄᴋᴇᴅ Tʜᴇ Bᴏᴛ")
+        logger.info(f"{user_id} :- Blocked The Bot")
         return 400
     except PeerIdInvalid:
-        logger.info(f"{user_id} : Uꜱᴇʀ Iᴅ Iɴᴠᴀʟɪᴅ")
+        logger.info(f"{user_id} :- User ID Invalid")
         return 400
     except Exception as e:
-        logger.error(f"{user_id} : {e}")
+        logger.error(f"{user_id} :- {e}")
         return 500
  
