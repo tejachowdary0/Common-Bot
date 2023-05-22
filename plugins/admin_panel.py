@@ -36,25 +36,25 @@ async def get_stats(bot, message):
     total_users = await db.total_users_count()
     uptime = time.strftime("%Hh%Mm%Ss", time.gmtime(time.time() - bot.uptime))    
     start_t = time.time()
-    st = await message.reply('**Aᴄᴄᴇꜱꜱɪɴɢ Tʜᴇ Dᴇᴛᴀɪʟꜱ.....**')    
+    st = await message.reply('**Accessing The Bot Details...**')    
     end_t = time.time()
     time_taken_s = (end_t - start_t) * 1000
-    await st.edit(text=f"**--Bᴏᴛ Sᴛᴀᴛᴜꜱ--** \n\n**⌚️ Bᴏᴛ Uᴩᴛɪᴍᴇ:** {uptime} \n**🐌 Cᴜʀʀᴇɴᴛ Pɪɴɢ:** `{time_taken_s:.3f} ᴍꜱ` \n**👭 Tᴏᴛᴀʟ Uꜱᴇʀꜱ:** `{total_users}`")
+    await st.edit(text=f"**--Bot Status--**\n\n**⌚️ Bot Uptime :- `{uptime}`\n🐌 Current Ping :- `{time_taken_s:.3f} MS` \n👭 Total Users 📊 :-** `{total_users}`")
 
 
 #Restart to cancell all process 
 @Client.on_message(filters.private & filters.command("restart") & filters.user(Config.ADMIN))
 async def restart_bot(b, m):
-    await m.reply_text("🔄__Rᴇꜱᴛᴀʀᴛɪɴɢ.....__")
+    await m.reply_text("**🔄 Restarting...**")
     os.execl(sys.executable, sys.executable, *sys.argv)
 
 
 @Client.on_message(filters.command("broadcast") & filters.user(Config.ADMIN) & filters.reply)
 async def broadcast_handler(bot: Client, m: Message):
-    await bot.send_message(Config.LOG_CHANNEL, f"{m.from_user.mention} or {m.from_user.id} Iꜱ ꜱᴛᴀʀᴛᴇᴅ ᴛʜᴇ Bʀᴏᴀᴅᴄᴀꜱᴛ......")
+    await bot.send_message(Config.LOG_CHANNEL, f"**{m.from_user.mention} or {m.from_user.id} is Started The Broadcast 💌...**")
     all_users = await db.get_all_users()
     broadcast_msg = m.reply_to_message
-    sts_msg = await m.reply_text("Bʀᴏᴀᴅᴄᴀꜱᴛ Sᴛᴀʀᴛᴇᴅ..!") 
+    sts_msg = await m.reply_text("**Broadcast 💌 Started...!**") 
     done = 0
     failed = 0
     success = 0
