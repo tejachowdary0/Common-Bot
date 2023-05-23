@@ -17,9 +17,10 @@ import os, time
 @Client.on_message(filters.private & (filters.document | filters.audio | filters.video))
 async def rename_start(client, message):
     file = getattr(message, message.media.value)
-    filename = file.file_name  
+    filename = file.file_name
+    mention = message.from_user.mention
     if file.file_size > 2000 * 1024 * 1024:
-         await message.reply_text("**Sorry {message.from_user.mention} This Bot is Doesn't Support Uploading Files Bigger Than 2GB. So you Can Use 4GB Rename Bot 👉🏻 [4GB Rename Star Bots](https://t.me/Star_4GB_Rename_Bot)**")
+         await message.reply_text("**Sorry {mention} This Bot is Doesn't Support Uploading Files Bigger Than 2GB. So you Can Use 4GB Rename Bot 👉🏻 [4GB Rename Star Bots](https://t.me/Star_4GB_Rename_Bot)**")
 
     try:
         await message.reply_text(
@@ -124,7 +125,7 @@ async def doc(bot, update):
                 thumb=ph_path, 
                 caption=caption, 
                 progress=progress_for_pyrogram,
-                progress_args=("**📤 Upload Started...**", ms, time.time()))
+                progress_args=("**📤 Upload Status :- {0}%**", ms, time.time()))
         elif type == "video": 
             await bot.send_video(
 		update.message.chat.id,
@@ -133,7 +134,7 @@ async def doc(bot, update):
 		thumb=ph_path,
 		duration=duration,
 	        progress=progress_for_pyrogram,
-		progress_args=("**📤 Upload Started...**", ms, time.time()))
+		progress_args=("**📤 Upload Status :- {0}%**", ms, time.time()))
         elif type == "audio": 
             await bot.send_audio(
 		update.message.chat.id,
@@ -142,7 +143,7 @@ async def doc(bot, update):
 		thumb=ph_path,
 		duration=duration,
 	        progress=progress_for_pyrogram,
-	        progress_args=("**📤 Upload Started...**", ms, time.time()))
+	        progress_args=("**📤 Upload Status :- {0}%**", ms, time.time()))
     except Exception as e:          
         os.remove(file_path)
         if ph_path:
