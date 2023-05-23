@@ -4,7 +4,7 @@ from helper.database import db
 @Client.on_message(filters.private & filters.command('set_caption'))
 async def add_caption(client, message):
     if len(message.command) == 1:
-       return await message.reply_text("**__Use this Command to Set the Custom Caption for Your Files. For Setting Your Caption Send Caption in the Format\n`/set_caption`__\nFile Caption Keys\n• `{filename}` :- Replaced by the Filename.\n• `{filesize}` :- Replaced by the Filesize.\n• `{duration}` :- Replaced by the Duration of Videos.\n\nExample :- `/set_caption <b>File Name :- {filename}\n\n💾 File Size :- {filesize}\n\n⏰ Duration :- {duration}</b>`\n\n⚠️ Note :- You Can Check the Current Caption using /see_caption**")
+       return await message.reply_text("**__Use this Command to Set the Custom Caption for Your Files. For Setting Your Caption Send Caption in the Format\n`/set_caption`__\n\nFile Caption Keys\n• `{filename}` :- Replaced by the Filename.\n• `{filesize}` :- Replaced by the Filesize.\n• `{duration}` :- Replaced by the Duration of Videos.\n\nExample :- `/set_caption <b>File Name :- {filename}\n\n💾 File Size :- {filesize}\n\n⏰ Duration :- {duration}</b>`\n\n⚠️ Note :- You Can Check the Current Caption using /see_caption**")
     caption = message.text.split(" ", 1)[1]
     await db.set_caption(message.from_user.id, caption=caption)
     await message.reply_text("__**✅ Caption Saved**__")
@@ -30,7 +30,11 @@ async def see_caption(client, message):
 async def viewthumb(client, message):    
     thumb = await db.get_thumbnail(message.from_user.id)
     if thumb:
-       await client.send_photo(chat_id=message.chat.id, photo=thumb)
+       await client.send_photo(chat_id=message.chat.id, photo=thumb, caption="Custom Thumbnail",
+                       reply_markup=types.InlineKeyboardMarkup(
+                           [[types.InlineKeyboardButton("🗑️ Delete Thumbnail",
+                                                        callback_data="deleteThumbnail")]]
+                       ))
     else:
         await message.reply_text("😔 __**You Don't have Any Thumbnail**__") 
 		
@@ -41,8 +45,13 @@ async def removethumb(client, message):
 	
 @Client.on_message(filters.private & filters.photo)
 async def addthumbs(client, message):
-    mkn = await message.reply_text("**Please Wait...**")
+    star = await message.reply_text("**Please Wait...**")
     await db.set_thumbnail(message.from_user.id, file_id=message.photo.file_id)                
-    await mkn.edit("✅️ __**Your Thumbnail Saved Permanently**__")
+    await star.edit("✅️ __**Your Thumbnail Saved Permanently**__")
 
-
+@Client.on_callback_query()
+async def cb_handlers(c: Client, cb: "types.CallbackQuery"):
+    elif cb.data == "deleteThumbnail":
+        await db.set_thumbnail(cb.from_user.id, file_id=None)
+        await cb.answer("❌️ __**Your Thumbnail Deleted Successfully 🗑️**__", show_alert=True)
+        await cb.message.delete(True)
