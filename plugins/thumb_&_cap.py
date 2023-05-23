@@ -1,4 +1,4 @@
-from pyrogram import Client, filters, types
+from pyrogram import Client, filters
 from helper.database import db
 
 @Client.on_message(filters.private & filters.command('set_caption'))
@@ -30,11 +30,7 @@ async def see_caption(client, message):
 async def viewthumb(client, message):    
     thumb = await db.get_thumbnail(message.from_user.id)
     if thumb:
-       await client.send_photo(chat_id=message.chat.id, photo=thumb, caption="Custom Thumbnail",
-                       reply_markup=types.InlineKeyboardMarkup(
-                           [[types.InlineKeyboardButton("🗑️ Delete Thumbnail",
-                                                        callback_data="deleteThumbnail")]]
-                       ))
+       await client.send_photo(chat_id=message.chat.id, photo=thumb, caption="**👆🏻 This is Your Permanent Thumbnail**")
     else:
         await message.reply_text("😔 __**You Don't have Any Thumbnail**__") 
 		
@@ -49,9 +45,3 @@ async def addthumbs(client, message):
     await db.set_thumbnail(message.from_user.id, file_id=message.photo.file_id)                
     await star.edit("✅️ __**Your Thumbnail Saved Permanently**__")
 
-@Client.on_callback_query()
-async def cb_handlers(c: Client, cb: "types.CallbackQuery"):
-    if cb.data == "deleteThumbnail":
-        await db.set_thumbnail(cb.from_user.id, file_id=None)
-        await cb.answer("❌️ __**Your Thumbnail Deleted Successfully 🗑️**__", show_alert=True)
-        await cb.message.delete(True)
