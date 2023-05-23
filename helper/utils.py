@@ -57,7 +57,7 @@ def TimeFormatter(milliseconds: int) -> str:
     tmp = ((str(days) + "D, ") if days else "") + \
         ((str(hours) + "H, ") if hours else "") + \
         ((str(minutes) + "M, ") if minutes else "") + \
-        ((str(seconds) + "S, ") if seconds else "") + \
+        ((str(seconds) + "s, ") if seconds else "") + \
         ((str(milliseconds) + "MS, ") if milliseconds else "")
     return tmp[:-2] 
 
