@@ -4,7 +4,7 @@ from helper.database import db
 @Client.on_message(filters.private & filters.command('set_caption'))
 async def add_caption(client, message):
     if len(message.command) == 1:
-       return await message.reply_text("**__Give The Caption__\nFile Caption Keys\n1) `{filename}` :- Name of The File.\n2) `{filesize}` :- Size of The File.\n3) `{duration}` :- Duration of The File.\n\nExample :- `/set_caption <b>File Name :- {filename}\n\n💾 File Size :- {filesize}\n\n⏰ Duration :- {duration}</b>`**")
+       return await message.reply_text("**__Use this Command to Set the Custom Caption for Your Files. For Setting Your Caption Send Caption in the Format\n`/set_caption`__\nFile Caption Keys\n• `{filename}` :- Replaced by the Filename.\n• `{filesize}` :- Replaced by the Filesize.\n• `{duration}` :- Replaced by the Duration of Videos.\n\nExample :- `/set_caption <b>File Name :- {filename}\n\n💾 File Size :- {filesize}\n\n⏰ Duration :- {duration}</b>`\n\n⚠️ Note :- You Can Check the Current Caption using /see_caption**")
     caption = message.text.split(" ", 1)[1]
     await db.set_caption(message.from_user.id, caption=caption)
     await message.reply_text("__**✅ Caption Saved**__")
