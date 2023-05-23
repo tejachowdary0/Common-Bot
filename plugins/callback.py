@@ -1,15 +1,6 @@
 from pyrogram import Client, filters
 from helper.database import db
 
-
-
-
-
-
-
-
-
-
 @Client.on_callback_query()
 async def cb_handlers(c: Client, cb: "types.CallbackQuery"):
     elif cb.data == "deleteThumbnail":
