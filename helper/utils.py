@@ -31,7 +31,7 @@ async def progress_for_pyrogram(current, total, ud_type, message, start):
         )
         try:
             await message.edit(
-                text=f"**{ud_type}\n\n{tmp}**",               
+                text=f"**{ud_type} {0}%\n\n{tmp}**",               
                 reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("🚫 Close", callback_data="close")]])                                               
             )
         except:
@@ -46,7 +46,7 @@ def humanbytes(size):
     while size > power:
         size /= power
         n += 1
-    return str(round(size, 2)) + " " + Dic_powerN[n] + 'ʙ'
+    return str(round(size, 2)) + " " + Dic_powerN[n] + 'B'
 
 
 def TimeFormatter(milliseconds: int) -> str:
@@ -54,11 +54,11 @@ def TimeFormatter(milliseconds: int) -> str:
     minutes, seconds = divmod(seconds, 60)
     hours, minutes = divmod(minutes, 60)
     days, hours = divmod(hours, 24)
-    tmp = ((str(days) + "ᴅ, ") if days else "") + \
-        ((str(hours) + "ʜ, ") if hours else "") + \
-        ((str(minutes) + "ᴍ, ") if minutes else "") + \
-        ((str(seconds) + "ꜱ, ") if seconds else "") + \
-        ((str(milliseconds) + "ᴍꜱ, ") if milliseconds else "")
+    tmp = ((str(days) + "D, ") if days else "") + \
+        ((str(hours) + "H, ") if hours else "") + \
+        ((str(minutes) + "M, ") if minutes else "") + \
+        ((str(seconds) + "S, ") if seconds else "") + \
+        ((str(milliseconds) + "MS, ") if milliseconds else "")
     return tmp[:-2] 
 
 def convert(seconds):
@@ -76,7 +76,7 @@ async def send_log(b, u):
         time = curr.strftime('%I:%M:%S %p')
         await b.send_message(
             Config.LOG_CHANNEL,
-            f"**#New_User\n\n᚛› Name :- {u.mention}\n᚛› ID :- `{u.id}`\n᚛› From Bot :- [Rename Star Bots](https://t.me/Rename_Star_Bot)\n\n᚛› Date :- {date}\n᚛› Time :- {time}\n\n᚛› By :- {b.mention}**"
+            f"**#New_User\n\n᚛› Name :- {u.mention}\n᚛› ID :- `{u.id}`\n᚛› Date :- {date}\n᚛› Time :- {time}\n\n᚛› From Bot :- {b.mention}**"
         )
         
 
