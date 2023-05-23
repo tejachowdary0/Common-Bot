@@ -7,7 +7,7 @@ async def add_caption(client, message):
        return await message.reply_text("**__Give The Caption__\nFile Caption Keys\n1) `{filename}` :- Name of The File.\n2) `{filesize}` :- Size of The File.\n3) `{duration}` :- Duration of The File.\n\nExample :- `/set_caption <b>File Name :- {filename}\n\n💾 File Size :- {filesize}\n\n⏰ Duration :- {duration}</b>`**")
     caption = message.text.split(" ", 1)[1]
     await db.set_caption(message.from_user.id, caption=caption)
-    await message.reply_text("__**✅ Caption Saved**__")
+    await message.reply_text("__**✅ --Your Caption :---\n\n{caption}**__")
    
 @Client.on_message(filters.private & filters.command('del_caption'))
 async def delete_caption(client, message):
@@ -21,7 +21,7 @@ async def delete_caption(client, message):
 async def see_caption(client, message):
     caption = await db.get_caption(message.from_user.id)  
     if caption:
-       await message.reply_text(f"**You're Caption :-**\n\n`{caption}`")
+       await message.reply_text(f"**You're Caption :-**\n\n{caption}")
     else:
        await message.reply_text("__**😔 You Don't have Any Caption**__")
 
