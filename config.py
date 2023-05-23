@@ -95,9 +95,10 @@ Exᴀᴍᴩʟᴇ:- /set_caption 📕 Fɪʟᴇ Nᴀᴍᴇ: {filename}
 • ❣️ <a href=https://t.me/about_jeol>𝗝𝗲𝗼𝗹 𝗣𝗮𝘂𝗹</a> """
 
     PROGRESS_BAR = """<b>\n
-🚀 Speed :- {3}/sec
-✅ Done :- {1}
-💾 Size :- {2}
-⏰ Time Left :- {4}</b>"""
+🚀 Speed :- {3}/sec\n
+💯 Percentage :- {0}%\n
+✅ Done :- {1}\n
+💾 Size :- {2}\n
+⏰ Time Left :- {4}\n\n©️ [Star Bots Tamil](https://t.me/Star_Bots_Tamil)</b>"""
 
 
