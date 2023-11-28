@@ -13,7 +13,6 @@ from asyncio import sleep
 from PIL import Image
 import os, time
 
-
 @Client.on_message(filters.private & (filters.document | filters.audio | filters.video))
 async def rename_start(client, message):
     file = getattr(message, message.media.value)
@@ -38,8 +37,6 @@ async def rename_start(client, message):
         )
     except:
         pass
-
-
 
 @Client.on_message(filters.private & filters.reply)
 async def refunc(client, message):
@@ -69,8 +66,6 @@ async def refunc(client, message):
             reply_markup=InlineKeyboardMarkup(button)
         )
 
-
-
 @Client.on_callback_query(filters.regex("upload"))
 async def doc(bot, update):    
     new_name = update.message.text
@@ -94,6 +89,7 @@ async def doc(bot, update):
     ph_path = None
     user_id = int(update.message.chat.id) 
     media = getattr(file, file.media.value)
+    upload_as_doc = await db.get_upload_as_doc(update.message.chat.id)
     c_caption = await db.get_caption(update.message.chat.id)
     c_thumb = await db.get_thumbnail(update.message.chat.id)
 
@@ -118,7 +114,7 @@ async def doc(bot, update):
     await ms.edit("**Trying to 📤 Uploading...**")
     type = update.data.split("_")[1]
     try:
-        if type == "document":
+        if (upload_as_doc is True) or (type == "document"):
             await bot.send_document(
                 update.message.chat.id,
                 document=file_path,
@@ -126,7 +122,7 @@ async def doc(bot, update):
                 caption=caption, 
                 progress=progress_for_pyrogram,
                 progress_args=("**📤 Upload Status :-**", ms, time.time()))
-        elif type == "video": 
+        elif (upload_as_doc is False) and (type == "video"): 
             await bot.send_video(
 		update.message.chat.id,
 	        video=file_path,
@@ -135,7 +131,7 @@ async def doc(bot, update):
 		duration=duration,
 	        progress=progress_for_pyrogram,
 		progress_args=("**📤 Upload Status :-**", ms, time.time()))
-        elif type == "audio": 
+        elif (upload_as_doc is False) and (type == "audio"):
             await bot.send_audio(
 		update.message.chat.id,
 		audio=file_path,
@@ -153,8 +149,3 @@ async def doc(bot, update):
     await ms.delete() 
     os.remove(file_path) 
     if ph_path: os.remove(ph_path) 
-
-
-
-
-
