@@ -8,10 +8,21 @@ from hachoir.parser import createParser
 
 from helper.utils import progress_for_pyrogram, convert, humanbytes
 from helper.database import db
-
+from pyrogram.emoji import *
 from asyncio import sleep
 from PIL import Image
 import os, time
+
+@Client.on_message(filters.command("mode") & filters.private & filters.incoming)
+async def set_mode(c, m):
+    upload_mode = (await db.get_user_data(m.from_user.id)).upload_mode
+    if upload_mode:
+        await update_mode(m.from_user.id, False)
+        text = f"**From Now all files will be Uploaded as Video {VIDEO_CAMERA}**"
+    else:
+        await update_mode(m.from_user.id, True)
+        text = f"**From Now all files will be Uploaded as Files {FILE_FOLDER}**"
+    await m.reply_text(text, quote=True)
 
 @Client.on_message(filters.private & (filters.document | filters.audio | filters.video))
 async def rename_start(client, message):
