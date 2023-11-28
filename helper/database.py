@@ -13,9 +13,7 @@ class Database:
     def new_user(self, id):
         return dict(
             _id=int(id),
-            join_date=datetime.date.today().isoformat(),
             upload_mode=False,
-            thumbnail=None,
             file_id=None,
             caption=None
         )
@@ -43,7 +41,7 @@ class Database:
         await self.col.delete_many({'_id': int(user_id)})
 
     async def set_upload_mode(self, id, upload_mode):
-        await self.col.update_one({'id': id}, {'$set': {'upload_mode': upload_mode}})
+        await self.col.update_one({'_id': id}, {'$set': {'upload_mode': upload_mode}})
 
     async def get_upload_mode(self, id):
         user = await self.col.find_one({'_id': int(id)})
