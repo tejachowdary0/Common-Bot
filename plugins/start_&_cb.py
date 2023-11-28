@@ -37,8 +37,8 @@ async def start(client, message):
         ],[
         InlineKeyboardButton('🤖 Update Channel', url='https://t.me/Star_Bots_Tamil'),
         InlineKeyboardButton('👥 Support Group', url='https://t.me/Star_Bots_Tamil_Support')
-        ],[
-        InlineKeyboardButton('⚙️ Settings', callback_data='showSettings')
+        #],[
+        #InlineKeyboardButton('⚙️ Settings', callback_data='showSettings')
         ],[
         InlineKeyboardButton('🎛️ About', callback_data='about'),
         InlineKeyboardButton('🛠️ Help', callback_data='help')
