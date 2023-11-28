@@ -95,6 +95,38 @@ Example :- `/set_caption 📁 File Name :- {filename}
 
 ⚠️ Contact For Any Problem :- [👥 Support Group](https://t.me/Star_Bots_Tamil_Support)</b>"""
 
+    HELP_TEXT = """
+<b><u>Available Commands</u>
+
+➠ /start :- Check if 😊 I'm Alive
+➠ /help :- How to Use❓
+➠ /about :- to Know About Me 😌
+    
+🖼️ <u>How to Set Thumbnail</u>
+ 
+➠ /start The Our Bot And Send Any Photo to Automatically Set Thumbnail 🖼️
+➠ /showthumbnail :- View Current Thumbnail 🖼️
+➠ /deletethumbnail :- Delete 🗑️ Your Thumbnail 🖼️
+
+✍🏻 <u>How to Set Custom Caption</u>
+
+➠ /set_caption :- Set Custom Caption ✍🏻
+➠ /see_caption :- View Current Caption ✍🏻
+➠ /del_caption :- Delete 🗑️ Your Caption
+
+✏️ <u>How to Rename File</u>
+
+➠ Send me Any File And Type New File Name
+
+<u>📂 Supported File Formats</u>
+
+➠ 📁 Document
+➠ 🎥 Video
+➠ 🎵 Audio
+
+⚠️ Contact For Any Problem :- [👥 Support Group](https://t.me/Star_Bots_Tamil_Support)</b>"""
+
+    
 #⚠️ Dᴏɴ'ᴛ Rᴇᴍᴏᴠᴇ Oᴜʀ Cʀᴇᴅɪᴛꜱ @ᴩyʀᴏ_ʙᴏᴛᴢ🙏🥲
     DEV_TXT = """<b><u>Special Thanks & Developer</b></u>
 <b>🧑🏻‍💻 Developer :- </b><a href=https://t.me/TG_Karthik><b>Karthik</b></a>"""
