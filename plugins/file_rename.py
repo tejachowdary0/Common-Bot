@@ -15,7 +15,7 @@ import os, time
 
 @Client.on_message(filters.command("mode") & filters.private & filters.incoming)
 async def set_mode(client, message):
-    upload_mode = await db.get_upload_mode(message.from_user.id)
+    upload_mode = (await db.get_user_data(message.from_user.id).get_upload_mode)
     if upload_mode:
         await db.set_update_mode(message.from_user.id, False)
         text = f"**From Now all files will be Uploaded as Video {VIDEO_CAMERA}**"
