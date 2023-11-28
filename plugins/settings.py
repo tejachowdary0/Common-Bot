@@ -9,7 +9,7 @@ async def show_settings(m: "types.Message"):
     if not user_data:
         await m.edit("Failed to fetch your data from database!")
         return
-    upload_as_doc = user_data.get("upload_as_doc", False)
+    upload_as_doc = user_data.get("upload_as_doc", True)
     caption = user_data.get("caption", None)
     apply_caption = user_data.get("apply_caption", True)
     thumbnail = user_data.get("thumbnail", None)
