@@ -14,7 +14,7 @@ class Database:
         return dict(
             _id=int(id),
             join_date=datetime.date.today().isoformat(),
-            upload_mode=True,
+            upload_mode=False,
             thumbnail=None,
             file_id=None,
             caption=None
@@ -47,7 +47,7 @@ class Database:
 
     async def get_upload_mode(self, id):
         user = await self.col.find_one({'id': int(id)})
-        return user.get('upload_mode', True)
+        return user.get('upload_mode', False)
 
     async def set_thumbnail(self, id, file_id):
         await self.col.update_one({'_id': int(id)}, {'$set': {'file_id': file_id}})
