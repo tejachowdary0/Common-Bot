@@ -1,3 +1,4 @@
+from pyrogram import Client, filters
 from pyrogram import types
 from helper.database import db
 from plugins.file_info import (
