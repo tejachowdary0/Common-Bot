@@ -14,7 +14,7 @@ class Database:
         return dict(
             _id=int(id),
             join_date=datetime.date.today().isoformat(),
-            upload_mode=None,
+            upload_mode=True,
             thumbnail=None,
             file_id=None,
             caption=None
@@ -41,6 +41,9 @@ class Database:
 
     async def delete_user(self, user_id):
         await self.col.delete_many({'_id': int(user_id)})
+
+    async def set_upload_mode(self, id, upload_mode):
+        await self.col.update_one({'id': id}, {'$set': {'upload_mode': upload_mode}})
 
     async def set_thumbnail(self, id, file_id):
         await self.col.update_one({'_id': int(id)}, {'$set': {'file_id': file_id}})
