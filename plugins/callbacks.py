@@ -6,7 +6,7 @@ from plugins.file_info import (
     get_file_type,
     get_file_attr
 )
-from plugins.display import humanbytes
+from helper.utils import humanbytes
 from plugins.settings import show_settings
 
 
