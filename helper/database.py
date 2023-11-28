@@ -1,3 +1,4 @@
+import datetime
 import motor.motor_asyncio
 from config import Config
 from .utils import send_log
@@ -11,7 +12,11 @@ class Database:
 
     def new_user(self, id):
         return dict(
-            _id=int(id),                                   
+            _id=int(id),
+            join_date=datetime.date.today().isoformat(),
+            apply_caption=True,
+            upload_as_doc=True,
+            thumbnail=None,
             file_id=None,
             caption=None
         )
@@ -37,6 +42,20 @@ class Database:
 
     async def delete_user(self, user_id):
         await self.col.delete_many({'_id': int(user_id)})
+
+    async def set_apply_caption(self, id, apply_caption):
+        await self.col.update_one({'id': id}, {'$set': {'apply_caption': apply_caption}})
+
+    async def get_apply_caption(self, id):
+        user = await self.col.find_one({'id': int(id)})
+        return user.get('apply_caption', True)
+
+    async def set_upload_as_doc(self, id, upload_as_doc):
+        await self.col.update_one({'id': id}, {'$set': {'upload_as_doc': upload_as_doc}})
+
+    async def get_upload_as_doc(self, id):
+        user = await self.col.find_one({'id': int(id)})
+        return user.get('upload_as_doc', False)
     
     async def set_thumbnail(self, id, file_id):
         await self.col.update_one({'_id': int(id)}, {'$set': {'file_id': file_id}})
@@ -52,6 +71,9 @@ class Database:
         user = await self.col.find_one({'_id': int(id)})
         return user.get('caption', None)
 
+    async def get_user_data(self, id) -> dict:
+        user = await self.col.find_one({'id': int(id)})
+        return user or None
 
 db = Database(Config.DB_URL, Config.DB_NAME)
 
