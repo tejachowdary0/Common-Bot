@@ -17,10 +17,10 @@ import os, time
 async def set_mode(c, m):
     upload_mode = await db.get_upload_mode(m.from_user.id)
     if upload_mode:
-        await update_mode(m.from_user.id, False)
+        await db.set_update_mode(m.from_user.id, False)
         text = f"**From Now all files will be Uploaded as Video {VIDEO_CAMERA}**"
     else:
-        await update_mode(m.from_user.id, True)
+        await db.set_update_mode(m.from_user.id, True)
         text = f"**From Now all files will be Uploaded as Files {FILE_FOLDER}**"
     await m.reply_text(text, quote=True)
 
