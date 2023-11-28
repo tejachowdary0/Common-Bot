@@ -1,5 +1,4 @@
 from pyrogram import types
-from bot.client import Client
 from helper.database import db
 from plugins.file_info import (
     get_media_file_name,
