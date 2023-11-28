@@ -35,7 +35,8 @@ async def rename_start(client, message):
 	    reply_to_message_id=message.id,  
 	    reply_markup=ForceReply(True)
         )
-	    
+        await uploader(message)
+
 async def uploader(bot, update):
     new_name = update.message.text
     new_filename = new_name.split(":-")[1]
