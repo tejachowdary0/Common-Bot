@@ -43,10 +43,10 @@ class Database:
         await self.col.delete_many({'_id': int(user_id)})
 
     async def set_upload_mode(self, id, upload_mode):
-        await self.col.update_one({'id': id}, {'$set': {'upload_mode': upload_mode}})
+        await self.col.update_one({'_id': id}, {'$set': {'upload_mode': upload_mode}})
 
     async def get_upload_mode(self, id):
-        user = await self.col.find_one({'id': int(id)})
+        user = await self.col.find_one({'_id': int(id)})
         return user.get('upload_mode', False)
 
     async def set_thumbnail(self, id, file_id):
@@ -64,7 +64,7 @@ class Database:
         return user.get('caption', None)
 
     async def get_user_data(self, id) -> dict:
-        user = await self.col.find_one({'id': int(id)})
+        user = await self.col.find_one({'_id': int(id)})
         return user or None
 
 db = Database(Config.DB_URL, Config.DB_NAME)
