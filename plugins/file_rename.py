@@ -35,15 +35,16 @@ async def rename_start(client, message):
 	    reply_to_message_id=message.id,  
 	    reply_markup=ForceReply(True)
         )
-        return
-    new_name = message.text
+	    
+async def uploader(bot, update):
+    new_name = update.message.text
     new_filename = new_name.split(":-")[1]
     file_path = f"downloads/{new_filename}"
-    file = message.reply_to_message
+    file = update.message.reply_to_message
 
-    ms = await message.edit("**Trying to 📥 Downloading...**")    
+    ms = await update.message.edit("**Trying to 📥 Downloading...**")    
     try:
-     	path = await client.download_media(message=file, file_name=file_path, progress=progress_for_pyrogram,progress_args=("**📥 Download Started...**", ms, time.time()))                    
+     	path = await bot.download_media(message=file, file_name=file_path, progress=progress_for_pyrogram,progress_args=("**📥 Download Started...**", ms, time.time()))                    
     except Exception as e:
      	return await ms.edit(e)
      	     
@@ -55,11 +56,11 @@ async def rename_start(client, message):
     except:
         pass
     ph_path = None
-    user_id = int(message.chat.id) 
+    user_id = int(update.message.chat.id) 
     media = getattr(file, file.media.value)
-    upload_as_doc = await db.get_upload_as_doc(message.chat.id)
-    c_caption = await db.get_caption(message.chat.id)
-    c_thumb = await db.get_thumbnail(message.chat.id)
+    upload_as_doc = await db.get_upload_as_doc(update.message.chat.id)
+    c_caption = await db.get_caption(update.message.chat.id)
+    c_thumb = await db.get_thumbnail(update.message.chat.id)
 
     if c_caption:
          try:
@@ -71,9 +72,9 @@ async def rename_start(client, message):
  
     if (media.thumbs or c_thumb):
          if c_thumb:
-             ph_path = await client.download_media(c_thumb) 
+             ph_path = await bot.download_media(c_thumb) 
          else:
-             ph_path = await client.download_media(media.thumbs[0].file_id)
+             ph_path = await bot.download_media(media.thumbs[0].file_id)
          Image.open(ph_path).convert("RGB").save(ph_path)
          img = Image.open(ph_path)
          img.resize((320, 320))
@@ -83,16 +84,16 @@ async def rename_start(client, message):
     type = message.data.split("_")[1]
     try:
         if (upload_as_doc is True) or (type == "document"):
-            await client.send_document(
-                message.chat.id,
+            await bot.send_document(
+                update.message.chat.id,
                 document=file_path,
                 thumb=ph_path, 
                 caption=caption, 
                 progress=progress_for_pyrogram,
                 progress_args=("**📤 Upload Status :-**", ms, time.time()))
         elif (upload_as_doc is False) and (type == "video"): 
-            await client.send_video(
-		message.chat.id,
+            await bot.send_video(
+		update.message.chat.id,
 	        video=file_path,
 	        caption=caption,
 		thumb=ph_path,
@@ -100,8 +101,8 @@ async def rename_start(client, message):
 	        progress=progress_for_pyrogram,
 		progress_args=("**📤 Upload Status :-**", ms, time.time()))
         elif (upload_as_doc is False) and (type == "audio"):
-            await client.send_audio(
-		message.chat.id,
+            await bot.send_audio(
+		update.message.chat.id,
 		audio=file_path,
 		caption=caption,
 		thumb=ph_path,
