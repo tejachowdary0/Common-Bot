@@ -46,7 +46,38 @@ async def start(client, message):
         await message.reply_photo(Config.START_PIC, caption=Txt.START_TXT.format(user.mention), reply_markup=button)       
     else:
         await message.reply_text(text=Txt.START_TXT.format(user.mention), reply_markup=button, disable_web_page_preview=True)
-   
+
+@Client.on_message(filters.private & filters.command("help"))
+async def help(client, message):
+    button = InlineKeyboardMarkup([[
+        InlineKeyboardButton("🧑🏻‍💻 Developer", callback_data='dev')
+        ],[
+        InlineKeyboardButton('🤖 Update Channel', url='https://t.me/Star_Bots_Tamil'),
+        InlineKeyboardButton('👥 Support Group', url='https://t.me/Star_Bots_Tamil_Support')
+        ],[
+        InlineKeyboardButton('🎛️ About', callback_data='about'),
+        InlineKeyboardButton('🏠 Home', callback_data='start')
+    ]])
+    if Config.START_PIC:
+        await message.reply_photo(Config.START_PIC, caption=Txt.HELP_TXT.format(user.mention), reply_markup=button)       
+    else:
+        await message.reply_text(text=Txt.HELP_TXT.format(user.mention), reply_markup=button, disable_web_page_preview=True)
+
+@Client.on_message(filters.private & filters.command("about"))
+async def about(client, message):
+    button = InlineKeyboardMarkup([[
+        InlineKeyboardButton("🧑🏻‍💻 Developer", callback_data='dev')
+        ],[
+        InlineKeyboardButton('🤖 Update Channel', url='https://t.me/Star_Bots_Tamil'),
+        InlineKeyboardButton('👥 Support Group', url='https://t.me/Star_Bots_Tamil_Support')
+        ],[
+        InlineKeyboardButton('🛠️ Help', callback_data='help'),
+        InlineKeyboardButton('🏠 Home', callback_data='start')
+    ]])
+    if Config.START_PIC:
+        await message.reply_photo(Config.START_PIC, caption=Txt.ABOUT_TXT.format(user.mention), reply_markup=button)       
+    else:
+        await message.reply_text(text=Txt.ABOUT_TXT.format(user.mention), reply_markup=button, disable_web_page_preview=True)
 
 @Client.on_callback_query()
 async def cb_handler(client, query: CallbackQuery):
