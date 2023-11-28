@@ -40,10 +40,10 @@ class Database:
     async def delete_user(self, user_id):
         await self.col.delete_many({'_id': int(user_id)})
 
-    async def set_upload_mode(self, user_id, upload_mode) -> dict:
-        await self.col.update_one({'_id': int(user_id)}, {'$set': {'upload_mode': upload_mode}})
+    async def set_upload_mode(self, user_id, upload_mode):
+        await self.col.update({'_id': int(user_id)}, {'$set': {'upload_mode': upload_mode}})
 
-    async def get_upload_mode(self, id) -> dict:
+    async def get_upload_mode(self, id):
         user = await self.col.find_one({'_id': int(id)})
         return user.get('upload_mode', False)
 
