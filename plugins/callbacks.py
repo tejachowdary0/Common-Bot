@@ -9,7 +9,6 @@ from plugins.file_info import (
 from helper.utils import humanbytes
 from plugins.settings import show_settings
 
-
 @Client.on_callback_query()
 async def cb_handlers(c: Client, cb: "types.CallbackQuery"):
     if cb.data == "showSettings":
