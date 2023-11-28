@@ -46,9 +46,43 @@ async def rename_start(client, message):
 	    reply_to_message_id=message.id,  
 	    reply_markup=ForceReply(True)
         )
-        await uploader(message)
+    except:
+        pass
 
-async def uploader(bot, update):
+
+
+@Client.on_message(filters.private & filters.reply)
+async def refunc(client, message):
+    reply_message = message.reply_to_message
+    if (reply_message.reply_markup) and isinstance(reply_message.reply_markup, ForceReply):
+        new_name = message.text 
+        await message.delete() 
+        msg = await client.get_messages(message.chat.id, reply_message.id)
+        file = msg.reply_to_message
+        media = getattr(file, file.media.value)
+        if not "." in new_name:
+            if "." in media.file_name:
+                extn = media.file_name.rsplit('.', 1)[-1]
+            else:
+                extn = "mkv"
+            new_name = new_name + "." + extn
+        await reply_message.delete()
+
+        button = [[InlineKeyboardButton("📁 Document",callback_data = "upload_document")]]
+        if file.media in [MessageMediaType.VIDEO, MessageMediaType.DOCUMENT]:
+            button.append([InlineKeyboardButton("🎥 Video", callback_data = "upload_video")])
+        elif file.media == MessageMediaType.AUDIO:
+            button.append([InlineKeyboardButton("🎵 Audio", callback_data = "upload_audio")])
+        await message.reply(
+            text=f"**Select The OutPut File Type\n• File Name :-**```{new_name}```",
+            reply_to_message_id=file.id,
+            reply_markup=InlineKeyboardMarkup(button)
+        )
+
+
+
+@Client.on_callback_query(filters.regex("upload"))
+async def doc(bot, update):    
     new_name = update.message.text
     new_filename = new_name.split(":-")[1]
     file_path = f"downloads/{new_filename}"
@@ -70,7 +104,6 @@ async def uploader(bot, update):
     ph_path = None
     user_id = int(update.message.chat.id) 
     media = getattr(file, file.media.value)
-    upload_as_doc = await db.get_upload_as_doc(update.message.chat.id)
     c_caption = await db.get_caption(update.message.chat.id)
     c_thumb = await db.get_thumbnail(update.message.chat.id)
 
@@ -93,9 +126,9 @@ async def uploader(bot, update):
          img.save(ph_path, "JPEG")
 
     await ms.edit("**Trying to 📤 Uploading...**")
-    type = message.data.split("_")[1]
+    type = update.data.split("_")[1]
     try:
-        if (upload_as_doc is True) or (type == "document"):
+        if type == "document":
             await bot.send_document(
                 update.message.chat.id,
                 document=file_path,
@@ -103,7 +136,7 @@ async def uploader(bot, update):
                 caption=caption, 
                 progress=progress_for_pyrogram,
                 progress_args=("**📤 Upload Status :-**", ms, time.time()))
-        elif (upload_as_doc is False) and (type == "video"): 
+        elif type == "video": 
             await bot.send_video(
 		update.message.chat.id,
 	        video=file_path,
@@ -112,7 +145,7 @@ async def uploader(bot, update):
 		duration=duration,
 	        progress=progress_for_pyrogram,
 		progress_args=("**📤 Upload Status :-**", ms, time.time()))
-        elif (upload_as_doc is False) and (type == "audio"):
+        elif type == "audio": 
             await bot.send_audio(
 		update.message.chat.id,
 		audio=file_path,
