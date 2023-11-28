@@ -41,6 +41,8 @@ async def start(client, message):
         ],[
         InlineKeyboardButton('🎛️ About', callback_data='about'),
         InlineKeyboardButton('🛠️ Help', callback_data='help')
+        ],[
+        InlineKeyboardButton('🔒 Close', callback_data='close')
     ]])
     if Config.START_PIC:
         await message.reply_photo(Config.START_PIC, caption=Txt.START_TXT.format(user.mention), reply_markup=button)       
@@ -57,6 +59,8 @@ async def help(client, message):
         ],[
         InlineKeyboardButton('🎛️ About', callback_data='about'),
         InlineKeyboardButton('🏠 Home', callback_data='start')
+        ],[
+        InlineKeyboardButton('🔒 Close', callback_data='close')
     ]])
     if Config.START_PIC:
         await message.reply_photo(Config.START_PIC, caption=Txt.HELP_TXT.format(user.mention), reply_markup=button)       
@@ -73,6 +77,8 @@ async def about(client, message):
         ],[
         InlineKeyboardButton('🛠️ Help', callback_data='help'),
         InlineKeyboardButton('🏠 Home', callback_data='start')
+        ],[
+        InlineKeyboardButton('🔒 Close', callback_data='close')
     ]])
     if Config.START_PIC:
         await message.reply_photo(Config.START_PIC, caption=Txt.ABOUT_TXT.format(user.mention), reply_markup=button)       
@@ -94,6 +100,8 @@ async def cb_handler(client, query: CallbackQuery):
                 ],[
                 InlineKeyboardButton('🎛️ About', callback_data='about'),
                 InlineKeyboardButton('🛠️ Help', callback_data='help')
+                ],[
+                InlineKeyboardButton('🔒 Close', callback_data='close')
             ]])
         )
     elif data == "help":
@@ -106,8 +114,10 @@ async def cb_handler(client, query: CallbackQuery):
                 ],[
                 InlineKeyboardButton("👥 Support Group", url='https://t.me/Star_Bots_Tamil_Support')
                 ],[
-                InlineKeyboardButton("🔒 close", callback_data = "close"),
+                InlineKeyboardButton("🎛️ About", callback_data = "about"),
                 InlineKeyboardButton("🏠 Home", callback_data = "start")
+                ],[
+                InlineKeyboardButton('🔒 Close', callback_data='close')
             ]])            
         )
     elif data == "about":
@@ -120,8 +130,10 @@ async def cb_handler(client, query: CallbackQuery):
                 ],[
                 InlineKeyboardButton("👥 Support Group", url="https://t.me/Star_Bots_Tamil_Support")
                 ],[
-                InlineKeyboardButton("🔒 close", callback_data = "close"),
+                InlineKeyboardButton("🛠️ Help", callback_data = "help"),
                 InlineKeyboardButton("🏠 Home", callback_data = "start")
+                ],[
+                InlineKeyboardButton('🔒 Close', callback_data='close')
             ]])            
         )
     elif data == "dev":
@@ -134,8 +146,11 @@ async def cb_handler(client, query: CallbackQuery):
                 ],[
                 InlineKeyboardButton("👥 Support Group", url="https://t.me/Star_Bots_Tamil_Support")
                 ],[
-                InlineKeyboardButton("🔒 Close", callback_data = "close"),
-                InlineKeyboardButton("🏠 Home", callback_data = "start")
+                InlineKeyboardButton("🎛️ About", callback_data = "about"),
+                InlineKeyboardButton("🏠 Home", callback_data = "start"),
+                InlineKeyboardButton("🛠️ Help", callback_data = "help")
+                ],[
+                InlineKeyboardButton('🔒 Close', callback_data='close')
             ]])          
         )
     elif data == "close":
