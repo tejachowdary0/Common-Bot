@@ -51,6 +51,7 @@ async def start(client, message):
 
 @Client.on_message(filters.private & filters.command("help"))
 async def help(client, message):
+    user = message.from_user
     button = InlineKeyboardMarkup([[
         InlineKeyboardButton("🧑🏻‍💻 Developer", callback_data='dev')
         ],[
@@ -69,6 +70,7 @@ async def help(client, message):
 
 @Client.on_message(filters.private & filters.command("about"))
 async def about(client, message):
+    user = message.from_user
     button = InlineKeyboardMarkup([[
         InlineKeyboardButton("🧑🏻‍💻 Developer", callback_data='dev')
         ],[
