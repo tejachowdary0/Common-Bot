@@ -40,33 +40,4 @@ class Database:
     async def delete_user(self, user_id):
         await self.col.delete_many({'_id': int(user_id)})
 
-    async def set_upload_mode(self, user_id, upload_mode):
-        await self.col.update({'_id': int(user_id)}, {'$set': {'upload_mode': upload_mode}})
-
-    async def get_upload_mode(self, id):
-        user = await self.col.find_one({'_id': int(id)})
-        return user.get('upload_mode', False)
-
-    async def set_thumbnail(self, id, file_id):
-        await self.col.update_one({'_id': int(id)}, {'$set': {'file_id': file_id}})
-
-    async def get_thumbnail(self, id):
-        user = await self.col.find_one({'_id': int(id)})
-        return user.get('file_id', None)
-
-    async def set_caption(self, id, caption):
-        await self.col.update_one({'_id': int(id)}, {'$set': {'caption': caption}})
-
-    async def get_caption(self, id):
-        user = await self.col.find_one({'_id': int(id)})
-        return user.get('caption', None)
-
-    async def get_user_data(self, id) -> dict:
-        user = await self.col.find_one({'_id': int(id)})
-        return user or None
-
 db = Database(Config.DB_URL, Config.DB_NAME)
-
-
-
-
