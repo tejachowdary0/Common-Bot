@@ -10,9 +10,15 @@ class Database:
         self.db = self._client[database_name]
         self.col = self.db.user
 
-    def new_user(self, id):
+    def new_user(self, id, name):
         return dict(
+            id = id,
+            name = name,
             _id=int(id),
+            ban_status=dict(
+                is_banned=False,
+                ban_reason="",
+            ),
         )
 
     async def add_user(self, b, m):
@@ -33,6 +39,38 @@ class Database:
     async def get_all_users(self):
         all_users = self.col.find({})
         return all_users
+
+    async def remove_ban(self, id):
+        ban_status = dict(
+            is_banned=False,
+            ban_reason=''
+        )
+        await self.col.update_one({'id': id}, {'$set': {'ban_status': ban_status}})
+    
+    async def ban_user(self, user_id, ban_reason="No Reason"):
+        ban_status = dict(
+            is_banned=True,
+            ban_reason=ban_reason
+        )
+        await self.col.update_one({'id': user_id}, {'$set': {'ban_status': ban_status}})
+
+    async def get_ban_status(self, id):
+        default = dict(
+            is_banned=False,
+            ban_reason=''
+        )
+        user = await self.col.find_one({'id':int(id)})
+        if not user:
+            return default
+        return user.get('ban_status', default)
+
+    async def get_all_users(self):
+        return self.col.find({})
+
+    async def get_banned(self):
+        users = self.col.find({'ban_status.is_banned': True})
+        b_users = [user['id'] async for user in users]
+        return b_users
 
     async def delete_user(self, user_id):
         await self.col.delete_many({'_id': int(user_id)})
