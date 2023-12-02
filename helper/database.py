@@ -13,9 +13,6 @@ class Database:
     def new_user(self, id):
         return dict(
             _id=int(id),
-            upload_mode=False,
-            file_id=None,
-            caption=None
         )
 
     async def add_user(self, b, m):
