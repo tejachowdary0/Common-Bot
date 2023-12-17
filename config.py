@@ -1,50 +1,26 @@
-"""
-Apache License 2.0
-Copyright (c) 2022 @PYRO_BOTZ
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-Telegram Link : https://t.me/PYRO_BOTZ 
-Repo Link : https://github.com/TEAM-PYRO-BOTZ/PYRO-RENAME-BOT
-License Link : https://github.com/TEAM-PYRO-BOTZ/PYRO-RENAME-BOT/blob/main/LICENSE
-"""
-
 import re, os, time
 
 id_pattern = re.compile(r'^.\d+$') 
 
 class Config(object):
-    # pyro client config
-    API_ID    = os.environ.get("API_ID", "")
-    API_HASH  = os.environ.get("API_HASH", "")
+    # star bots client config
+    API_ID    = os.environ.get("API_ID", "11973721")
+    API_HASH  = os.environ.get("API_HASH", "5264bf4663e9159565603522f58d3c18")
     BOT_TOKEN = os.environ.get("BOT_TOKEN", "") 
    
     # database config
-    DB_NAME = os.environ.get("DB_NAME","pyro-botz")     
-    DB_URL  = os.environ.get("DB_URL","")
+    DB_NAME = os.environ.get("DB_NAME","Cluster0")     
+    DB_URL  = os.environ.get("DB_URL","mongodb+srv://KarthikMovies:KarthikUK007@cluster0.4l5byki.mongodb.net/?retryWrites=true&w=majority")
  
     # other configs
     BOT_UPTIME  = time.time()
-    START_PIC   = os.environ.get("START_PIC", "")
-    ADMIN       = [int(admin) if id_pattern.search(admin) else admin for admin in os.environ.get('ADMIN', '').split()]
-    FORCE_SUB   = os.environ.get("FORCE_SUB", "") 
-    LOG_CHANNEL = int(os.environ.get("LOG_CHANNEL", None))
+    START_PIC   = os.environ.get("START_PIC", "https://graph.org/file/1412d9f93d77c350d8268.jpg")
+    ADMIN       = [int(admin) if id_pattern.search(admin) else admin for admin in os.environ.get('ADMIN', '1391556668 5162208212 5239847373').split()]
+    FORCE_SUB   = os.environ.get("FORCE_SUB", "Star_Bots_Tamil") 
+    LOG_CHANNEL = int(os.environ.get("LOG_CHANNEL", "-1001821439025"))
 
     # wes response configuration     
     WEBHOOK = bool(os.environ.get("WEBHOOK", True))
-
-
 
 class Txt(object):
     # part of text configuration
@@ -130,12 +106,3 @@ Example :- `/set_caption 📁 File Name :- {filename}
 #⚠️ Dᴏɴ'ᴛ Rᴇᴍᴏᴠᴇ Oᴜʀ Cʀᴇᴅɪᴛꜱ @ᴩyʀᴏ_ʙᴏᴛᴢ🙏🥲
     DEV_TXT = """<b><u>Special Thanks & Developer</b></u>
 <b>🧑🏻‍💻 Developer :- </b><a href=https://t.me/TG_Karthik><b>Karthik</b></a>"""
-
-    PROGRESS_BAR = """<b>\n
-🚀 Speed :- {3}/sec\n
-💯 Percentage :- {0}%\n
-✅ Done :- {1}\n
-💾 Size :- {2}\n
-⏰ Time Left :- {4}\n\n©️ [Star Bots Tamil](https://t.me/Star_Bots_Tamil)</b>"""
-
-
