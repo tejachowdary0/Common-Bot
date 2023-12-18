@@ -18,7 +18,6 @@ async def not_subscribed(_, client, message):
         pass
     return True
 
-
 @Client.on_message(filters.private & filters.create(not_subscribed))
 async def forces_sub(client, message):
     mention = message.from_user.mention
