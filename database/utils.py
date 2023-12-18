@@ -1,7 +1,7 @@
 import math, time
 from datetime import datetime
 from pytz import timezone
-from config import Config, Txt 
+from config import Config, Text 
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 
 async def send_log(b, u):
