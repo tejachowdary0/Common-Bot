@@ -18,8 +18,11 @@ async def get_stats(bot, message):
     time_taken_s = (end_t - start_t) * 1000
     await st.edit(text=f"**--Bot Status--**\n\n👭 Total Users 📊 :-** `{total_users}`\n**⌚️ Bot Uptime :- `{uptime}`\n🐌 Current Ping :- `{time_taken_s:.3f} MS`")
 
-@Client.on_message(filters.command("broadcast") & filters.user(Config.ADMINS) & filters.reply)
+@Client.on_message(filters.command("broadcast") & filters.user(Config.ADMINS))
 async def broadcast_handler(bot: Client, m: Message):
+    if m.reply_to_message is None:
+        await m.reply_text("**Please Reply to a Message to Use the Broadcast 💌 Command.**")
+        return
     await bot.send_message(Config.LOG_CHANNEL, f"**{m.from_user.mention} or {m.from_user.id} is Started The Broadcast 💌...**")
     all_users = await db.get_all_users()
     broadcast_msg = m.reply_to_message
