@@ -24,7 +24,7 @@ class Config(object):
 
 class Text(object):
     # part of text configuration
-    START_TEXT = """<b>Hello 👋🏻 {} ❤️,\nI'm An Star Bots Tamil's Official Rename Bot. This is An Advanced and Yet Powerful Rename Bot.\nFor More Details Check /help\n\n➠ You Can Rename File / Video.\n➠ Change Thumbnail of Your File / Video.\n➠ Convert Video to File & File to Video.\nOur Bot Fully customisable\n➠ Permanent Thumbnail 🖼️ and Custom Caption ✍🏻.\n\nMaintenance By :- [Star Bots Tamil](https://t.me/Star_Bots_Tamil)</b>"""
+    START_TEXT = """<b>Hello 👋🏻 {} ❤️,\nI'm An Star Bots Tamil's Official () Bot. This is An Advanced and Yet Powerful () Bot.\n➠ For More Details Check /help\n\nMaintenance By :- [Star Bots Tamil](https://t.me/Star_Bots_Tamil)</b>"""
 
     ABOUT_TEXT = """<b>🤖 My Name :- {}\n
 🧑🏻‍💻 Developer :- <a href=https://t.me/TG_Karthik><b>Karthik</b></a>\n
@@ -41,35 +41,14 @@ class Text(object):
 ➠ /start :- Check if 😊 I'm Alive
 ➠ /help :- How to Use❓
 ➠ /about :- to Know About Me 😌
-    
-🖼️ <u>How to Set Thumbnail</u>
- 
-➠ /start The Our Bot And Send Any Photo to Automatically Set Thumbnail 🖼️
-➠ /showthumbnail :- View Current Thumbnail 🖼️
-➠ /deletethumbnail :- Delete 🗑️ Your Thumbnail 🖼️
-
-✍🏻 <u>How to Set Custom Caption</u>
-
-➠ /set_caption :- Set Custom Caption ✍🏻
-➠ /see_caption :- View Current Caption ✍🏻
-➠ /del_caption :- Delete 🗑️ Your Caption
-Example :- `/set_caption 📁 File Name :- {filename}
-
-💾 File Size :- {filesize}
-
-⏰ Duration :- {duration}`
-
-✏️ <u>How to Rename File</u>
-
-➠ Send me Any File And Type New File Name
-
-<u>📂 Supported File Formats</u>
-
-➠ 📁 Document
-➠ 🎥 Video
-➠ 🎵 Audio
+➠ /stats :- Total Users 📊
+➠ /ban :- Ban a User 🚫
+➠ /unban :- Unban a User 😁
+➠ /banned :- Total Banned Users 🤕
+➠ /broadcast :- to Broadcast 💌 a Message to All Users
 
 ⚠️ Contact For Any Problem :- [👥 Support Group](https://t.me/Star_Bots_Tamil_Support)</b>"""
 
     DEV_TEXT = """<b><u>Special Thanks & Developer</b></u>
+**You Can pay Any Our Bot's Repo**
 <b>🧑🏻‍💻 Developer :- </b><a href=https://t.me/TG_Karthik><b>Karthik</b></a>"""
