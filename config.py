@@ -4,20 +4,20 @@ id_pattern = re.compile(r'^.\d+$')
 
 class Config(object):
     # star bots client config
-    API_ID    = os.environ.get("API_ID", "11973721")
-    API_HASH  = os.environ.get("API_HASH", "5264bf4663e9159565603522f58d3c18")
-    BOT_TOKEN = os.environ.get("BOT_TOKEN", "") 
+    API_ID    = os.environ.get("API_ID", "27604683")
+    API_HASH  = os.environ.get("API_HASH", "ed52a1d0803b2ed84c5cca7f20535aac")
+    BOT_TOKEN = os.environ.get("BOT_TOKEN", "6636903897:AAH4jTAphNyRH9jHXQfi-FQd3WO-3LSRcxU") 
    
     # database config
-    DATABASE_NAME = os.environ.get("DATABASE_NAME","") # Bot Username  
-    DATABASE_URL  = os.environ.get("DATABASE_URL","mongodb+srv://KarthikMovies:KarthikUK007@cluster0.4l5byki.mongodb.net/?retryWrites=true&w=majority")
+    DATABASE_NAME = os.environ.get("DATABASE_NAME","rename") # Bot Username  
+    DATABASE_URL  = os.environ.get("DATABASE_URL","mongodb+srv://tejachowdary106:6VZqrpK9PxLQXOS6@hotstar.fpazw92.mongodb.net/?retryWrites=true&w=majority")
  
     # other configs
     BOT_UPTIME  = time.time()
     PIC         = os.environ.get("PIC", "https://graph.org/file/1412d9f93d77c350d8268.jpg")
-    ADMINS      = [int(admin) if id_pattern.search(admin) else admin for admin in os.environ.get('ADMIN', '1391556668 5162208212 5239847373').split()]
-    FORCE_SUB   = os.environ.get("FORCE_SUB", "Star_Bots_Tamil") 
-    LOG_CHANNEL = int(os.environ.get("LOG_CHANNEL", "-1001821439025"))
+    ADMINS      = [int(admin) if id_pattern.search(admin) else admin for admin in os.environ.get('ADMIN', '1264280791').split()]
+    FORCE_SUB   = os.environ.get("FORCE_SUB", "") 
+    LOG_CHANNEL = int(os.environ.get("LOG_CHANNEL", "-1001910675865"))
 
     # wes response configuration     
     WEBHOOK = bool(os.environ.get("WEBHOOK", True))
