@@ -136,7 +136,7 @@ async def unban(c, m):
             quote=True,
         )
 
-@Client.on_message(filters.private & filters.command("banned_users"))
+@Client.on_message(filters.private & filters.command("banned"))
 async def _banned_usrs(c, m):
     if m.from_user.id not in Config.ADMINS:
         await m.delete()
