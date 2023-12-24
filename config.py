@@ -9,7 +9,7 @@ class Config(object):
     BOT_TOKEN = os.environ.get("BOT_TOKEN", "6636903897:AAH4jTAphNyRH9jHXQfi-FQd3WO-3LSRcxU") 
    
     # database config
-    DATABASE_NAME = os.environ.get("DATABASE_NAME","rename") # Bot Username  
+    DATABASE_NAME = os.environ.get("DATABASE_NAME","hotstar") # Bot Username  
     DATABASE_URL  = os.environ.get("DATABASE_URL","mongodb+srv://tejachowdary106:6VZqrpK9PxLQXOS6@hotstar.fpazw92.mongodb.net/?retryWrites=true&w=majority")
  
     # other configs
