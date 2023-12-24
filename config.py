@@ -24,7 +24,7 @@ class Config(object):
 
 class Text(object):
     # part of text configuration
-    START_TEXT = """<b>Hello 👋🏻 {} ❤️,\nI'm An Star Bots Tamil's Official () Bot. This is An Advanced and Yet Powerful () Bot.\n➠ For More Details Check /help\n\nMaintenance By :- [Star Bots Tamil](https://t.me/Star_Bots_Tamil)</b>"""
+    START_TEXT = """<b>Hello 👋🏻 {} ❤️,\nI'm An Star Bots Tamil's Official () Bot. This is An Advanced () Bot.\n➠ For More Details Check /help\n\nMaintenance By :- [Star Bots Tamil](https://t.me/Star_Bots_Tamil)</b>"""
 
     ABOUT_TEXT = """<b>🤖 My Name :- {}\n
 🧑🏻‍💻 Developer :- <a href=https://t.me/TG_Karthik><b>Karthik</b></a>\n
@@ -49,6 +49,18 @@ class Text(object):
 
 ⚠️ Contact For Any Problem :- [👥 Support Group](https://t.me/Star_Bots_Tamil_Support)</b>"""
 
-    DEV_TEXT = """<b><u>Special Thanks & Developer</b></u>
-**You Can pay Any Our Bot's Repo**
-<b>🧑🏻‍💻 Developer :- </b><a href=https://t.me/TG_Karthik><b>Karthik</b></a>"""
+    DEV_TXT = """<b><u>Special Thanks & Developer</b></u>
+**You Can pay Any Our Bot's Repo. If you're able to Donate or Buy Our Bot's Repo, please Consider using these Methods:
+
+UPI ID :- `starbotstamil@upi`
+
+GPay :- `starbotstamil@oksbi`
+
+Phonepe :- `starbotstamil@ybl`
+
+Paytm :- `starbotstamil@paytm`
+
+After pay Must Send Screenshot Admin**
+
+<b>🧑🏻‍💻 Developer :- </b><a href=https://t.me/TG_Karthik><b>Karthik</b></a>
+**Contact me for more info**"""
