@@ -22,7 +22,7 @@ async def not_subscribed(_, client, message):
 async def forces_sub(client, message):
     mention = message.from_user.mention
     buttons = [[InlineKeyboardButton(text="📢 Join Update Channel", url=f"https://t.me/{Config.FORCE_SUB}") ]]
-    text = "**Hello {mention} 💗,\nJoin Our Bot Updates Channel To Use Me ☺️\nYou Need to Join Our Channel to Use me\nKindly Please Join Our Channel**"
+    text = f"**Hello {mention} 💗,\nJoin Our Bot Updates Channel To Use Me ☺️\nYou Need to Join Our Channel to Use me\nKindly Please Join Our Channel**"
     try:
         user = await client.get_chat_member(Config.FORCE_SUB, message.from_user.id)    
         if user.status == enums.ChatMemberStatus.BANNED:                                   
@@ -30,4 +30,4 @@ async def forces_sub(client, message):
     except UserNotParticipant:                       
         return await message.reply_text(text=text, reply_markup=InlineKeyboardMarkup(buttons))
     return await message.reply_text(text=text, reply_markup=InlineKeyboardMarkup(buttons))
-          
+        
