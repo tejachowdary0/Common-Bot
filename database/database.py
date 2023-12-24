@@ -10,10 +10,9 @@ class Database:
         self.db = self._client[database_name]
         self.col = self.db.user
 
-    def new_user(self, id, name):
+    def new_user(self, id):
         return dict(
             id = id,
-            name = name,
             _id=int(id),
             ban_status=dict(
                 is_banned=False,
