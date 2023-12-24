@@ -28,6 +28,7 @@ class Text(object):
 
     ABOUT_TEXT = """<b>🤖 My Name :- {}\n
 🧑🏻‍💻 Developer :- <a href=https://t.me/TG_Karthik><b>Karthik</b></a>\n
+💁🏻 My Best Friend :- {}\n
 📝 Language :- Python3\n
 📚 Framework :- Pyrogram\n
 📡 Hosted on :- VPS\n
