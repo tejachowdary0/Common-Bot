@@ -60,9 +60,9 @@ async def about(client, message):
         InlineKeyboardButton('🔒 Close', callback_data='close')
     ]])
     if Config.PIC:
-        await message.reply_photo(Config.PIC, caption=Text.ABOUT_TEXT.format(user.mention), reply_markup=button)       
+        await message.reply_photo(Config.PIC, caption=Text.ABOUT_TEXT.format(client.mention, user.mention), reply_markup=button)       
     else:
-        await message.reply_text(text=Text.ABOUT_TEXT.format(user.mention), reply_markup=button, disable_web_page_preview=True)
+        await message.reply_text(text=Text.ABOUT_TEXT.format(client.mention, user.mention), reply_markup=button, disable_web_page_preview=True)
 
 @Client.on_callback_query()
 async def cb_handler(client, query: CallbackQuery):
@@ -101,7 +101,7 @@ async def cb_handler(client, query: CallbackQuery):
         )
     elif data == "about":
         await query.message.edit_text(
-            text=Text.ABOUT_TEXT.format(client.mention),
+            text=Text.ABOUT_TEXT.format(client.mention, query.from_user.mention),
             disable_web_page_preview = True,
             reply_markup=InlineKeyboardMarkup([[
                 #⚠️ don't change source code & source link ⚠️ #
